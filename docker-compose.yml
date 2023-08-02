@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+ goaltrackrdb:
+  image: postgres:15.1
+  container_name: goaltrackrdb-container
+  restart: always
+  environment:
+   POSTGRES_USER: sartoriMatias
+   POSTGRES_PASSWORD: lacabra2525
+   POSTGRES_DB: goaltrackrdb
+  volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+  ports:
+      - 5433:5432
