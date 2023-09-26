@@ -1,5 +1,5 @@
-import { BaseEntity } from 'src/config/base.entity';
-import { IUser } from 'src/interfaces';
+import { BaseEntity } from '../../../src/config/base.entity';
+import { IUser } from '../../../src/interfaces/user.interface';
 import { Column, Entity } from 'typeorm';
 @Entity({ name: 'users' })
 export class UsersEntity extends BaseEntity implements IUser {
@@ -10,10 +10,10 @@ export class UsersEntity extends BaseEntity implements IUser {
   @Column()
   password: string;
   @Column()
-  firstName: string;
+  name: string;
   @Column()
   lastName: string;
-  @Column()
+  @Column({ default: true })
   isActive: boolean;
   @Column()
   role: string;

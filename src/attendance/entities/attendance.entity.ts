@@ -1,5 +1,5 @@
-import { BaseEntity } from 'src/config/base.entity';
-import { IAttendance, IUser } from 'src/interfaces';
+import { BaseEntity } from '../../../src/config/base.entity';
+import { IAttendance } from '../../../src/interfaces';
 import { Column, Entity } from 'typeorm';
 
 @Entity({ name: 'attendance' })
