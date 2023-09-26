@@ -4,9 +4,7 @@ export class CreateUserDto {
   firstName: string;
   lastName: string;
   isActive: boolean;
-  isAdmin: boolean;
-  isSuperUser: boolean;
-  isStaff: boolean;
+  role: string;
   dni: number;
   phone: number;
   address: string;
