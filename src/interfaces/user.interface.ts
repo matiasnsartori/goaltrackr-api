@@ -1,3 +1,5 @@
+import { Attendance } from 'src/attendance/entities/attendance.entity';
+
 export interface IUser {
   email: string;
   username: string;
@@ -15,4 +17,5 @@ export interface IUser {
   position: string;
   group: string;
   bussinessUnit: string;
+  attendance: Attendance[];
 }
