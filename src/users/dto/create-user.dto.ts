@@ -6,7 +6,13 @@ import {
   IsString,
 } from 'class-validator';
 import { ROLES } from 'src/constants/roles';
-export class CreateUserDto {
+import { IUser } from 'src/interfaces';
+export class CreateUserDto implements IUser {
+  @IsString()
+  username: string;
+  @IsString()
+  @IsNotEmpty()
+  name: string;
   @IsNotEmpty()
   @IsEmail()
   email: string;
@@ -33,10 +39,6 @@ export class CreateUserDto {
   birthday: Date;
   @IsString()
   clothingSize?: string;
-  @IsString()
-  experience?: boolean;
-  @IsString()
-  position?: string;
   @IsNotEmpty()
   @IsString()
   group: string;

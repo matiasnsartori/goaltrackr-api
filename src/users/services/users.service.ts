@@ -30,7 +30,7 @@ export class UsersService {
         });
       return users;
     } catch (error) {
-      throw new ErrorManager.createSignatureError(error.message);
+      throw ErrorManager.createSignatureError(error.message);
     }
   }
 
@@ -48,7 +48,7 @@ export class UsersService {
       }
       return user;
     } catch (error) {
-      throw new ErrorManager.createSignatureError(error.message);
+      throw ErrorManager.createSignatureError(error.message);
     }
   }
 
@@ -64,7 +64,8 @@ export class UsersService {
       if (user.affected === 0) throw new Error('User not found');
       return user;
     } catch (error) {
-      throw new ErrorManager.createSignatureError(error.message);
+      //createSignatureError es un metodo estatico de la clase ErrorManager por ende no necesita ser instanciado con new.
+      throw ErrorManager.createSignatureError(error.message);
     }
   }
 

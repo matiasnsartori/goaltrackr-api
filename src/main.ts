@@ -11,6 +11,7 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       transformOptions: {
+        //esto habilita el dto con class validator
         enableImplicitConversion: true,
       },
     }),

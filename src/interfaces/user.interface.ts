@@ -9,13 +9,11 @@ export interface IUser {
   isActive: boolean;
   role: string;
   dni: number;
-  phone: number;
-  address: string;
+  phone?: number;
+  address?: string;
   birthday: Date;
-  clothingSize: string;
-  experience: boolean;
-  position: string;
+  clothingSize?: string;
   group: string;
   bussinessUnit: string;
-  attendance: Attendance[];
+  attendance?: Attendance[];
 }
