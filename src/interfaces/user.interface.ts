@@ -1,4 +1,6 @@
 import { Attendance } from 'src/attendance/entities/attendance.entity';
+import { BussinessUnit } from 'src/bussiness-unit/entities/bussiness-unit.entity';
+import { Group } from 'src/group/entities/group.entity';
 
 export interface IUser {
   email: string;
@@ -13,7 +15,7 @@ export interface IUser {
   address?: string;
   birthday: Date;
   clothingSize?: string;
-  group: string;
-  bussinessUnit: string;
+  group: Group;
+  bussinessUnit: BussinessUnit;
   attendance?: Attendance[];
 }

@@ -5,7 +5,9 @@ import {
   IsNotEmpty,
   IsString,
 } from 'class-validator';
+import { BussinessUnit } from 'src/bussiness-unit/entities/bussiness-unit.entity';
 import { ROLES } from 'src/constants/roles';
+import { Group } from 'src/group/entities/group.entity';
 import { IUser } from 'src/interfaces';
 export class CreateUserDto implements IUser {
   @IsString()
@@ -41,8 +43,8 @@ export class CreateUserDto implements IUser {
   clothingSize?: string;
   @IsNotEmpty()
   @IsString()
-  group: string;
+  group: Group;
   @IsNotEmpty()
   @IsString()
-  bussinessUnit: string;
+  bussinessUnit: BussinessUnit;
 }
