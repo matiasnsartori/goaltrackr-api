@@ -1,6 +1,7 @@
-import { BaseEntity } from 'src/config/base.entity';
-import { IUser } from 'src/interfaces';
-import { Column, Entity } from 'typeorm';
+import { Attendance } from '../../attendance/entities/attendance.entity';
+import { BaseEntity } from '../../config/base.entity';
+import { IUser } from '../../interfaces/user.interface';
+import { Column, Entity, OneToMany } from 'typeorm';
 @Entity({ name: 'users' })
 export class UsersEntity extends BaseEntity implements IUser {
   @Column({ unique: true })
@@ -10,10 +11,10 @@ export class UsersEntity extends BaseEntity implements IUser {
   @Column()
   password: string;
   @Column()
-  firstName: string;
+  name: string;
   @Column()
   lastName: string;
-  @Column()
+  @Column({ default: true })
   isActive: boolean;
   @Column()
   role: string;
@@ -35,4 +36,7 @@ export class UsersEntity extends BaseEntity implements IUser {
   group: string;
   @Column()
   bussinessUnit: string;
+  // Esta es una relación de uno a muchos, un usuario puede tener muchas asistencias, bidireccionalmente se puede acceder a la asistencia desde el usuario y viceversa.
+  @OneToMany(() => Attendance, (attendance) => attendance.user)
+  attendance: Attendance[];
 }

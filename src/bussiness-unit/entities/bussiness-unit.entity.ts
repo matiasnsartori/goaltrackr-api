@@ -1,5 +1,5 @@
-import { BaseEntity } from 'src/config/base.entity';
-import { IBussinessUnit } from 'src/interfaces';
+import { BaseEntity } from '../../config/base.entity';
+import { IBussinessUnit } from '../../interfaces/bussiness_unit.interface';
 import { Column, Entity } from 'typeorm';
 
 @Entity({ name: 'bussiness-unit' })
