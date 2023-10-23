@@ -1,4 +1,6 @@
 import {
+  IsBoolean,
+  IsDate,
   IsDateString,
   IsEmail,
   IsEnum,
@@ -6,7 +8,7 @@ import {
   IsString,
 } from 'class-validator';
 import { BussinessUnit } from 'src/bussiness-unit/entities/bussiness-unit.entity';
-import { ROLES } from 'src/constants/roles';
+import { BUSSINESS_UNITS, ROLES } from 'src/constants';
 import { Group } from 'src/group/entities/group.entity';
 import { IUser } from 'src/interfaces';
 export class CreateUserDto implements IUser {
@@ -27,7 +29,6 @@ export class CreateUserDto implements IUser {
   @IsNotEmpty()
   @IsString()
   lastName: string;
-  @IsNotEmpty()
   isActive: boolean;
   @IsNotEmpty()
   @IsEnum(ROLES)
@@ -37,7 +38,6 @@ export class CreateUserDto implements IUser {
   phone?: number;
   address?: string;
   @IsNotEmpty()
-  @IsDateString()
   birthday: Date;
   @IsString()
   clothingSize?: string;
@@ -45,6 +45,6 @@ export class CreateUserDto implements IUser {
   @IsString()
   group: Group;
   @IsNotEmpty()
-  @IsString()
+  @IsEnum(BUSSINESS_UNITS)
   bussinessUnit: BussinessUnit;
 }

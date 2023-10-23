@@ -1,23 +1,22 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
 import { CreateBussinessUnitDto } from '../dto/create-bussiness-unit.dto';
 import { UpdateBussinessUnitDto } from '../dto/update-bussiness-unit.dto';
 import { BussinessUnitService } from '../services/bussiness-unit.service';
+import { BussinessUnit } from '../entities/bussiness-unit.entity';
+import { ErrorManager } from 'src/utils/error.manager';
+import { UpdateResult } from 'typeorm';
 
 @Controller('bussiness-unit')
 export class BussinessUnitController {
   constructor(private readonly bussinessUnitService: BussinessUnitService) {}
 
   @Post()
-  create(@Body() createBussinessUnitDto: CreateBussinessUnitDto) {
-    return this.bussinessUnitService.create(createBussinessUnitDto);
+  create(
+    @Body() createBussinessUnitDto: CreateBussinessUnitDto,
+  ): Promise<BussinessUnit> {
+    return this.bussinessUnitService.createBussinessUnit(
+      createBussinessUnitDto,
+    );
   }
 
   @Get()
@@ -25,21 +24,14 @@ export class BussinessUnitController {
     return this.bussinessUnitService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bussinessUnitService.findOne(+id);
-  }
-
   @Patch(':id')
-  update(
-    @Param('id') id: string,
+  updateBussinessUnit(
+    @Param('id') id: number,
     @Body() updateBussinessUnitDto: UpdateBussinessUnitDto,
-  ) {
-    return this.bussinessUnitService.update(+id, updateBussinessUnitDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.bussinessUnitService.remove(+id);
+  ): Promise<UpdateResult> {
+    return this.bussinessUnitService.updateBussinessUnit(
+      id,
+      updateBussinessUnitDto,
+    );
   }
 }

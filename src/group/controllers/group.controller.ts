@@ -11,7 +11,7 @@ import { UpdateGroupDto } from '../dto/update-group.dto';
 import { CreateGroupDto } from '../dto/create-group.dto';
 import { GroupService } from '../services/group.service';
 
-@Controller('group')
+@Controller('groups')
 export class GroupController {
   constructor(private readonly groupService: GroupService) {}
 
@@ -27,7 +27,7 @@ export class GroupController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.groupService.findOne(+id);
+    return this.groupService.findOne(id);
   }
 
   @Patch(':id')
