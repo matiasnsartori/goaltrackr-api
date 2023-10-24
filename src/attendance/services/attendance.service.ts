@@ -1,11 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { UpdateAttendanceDto } from '../dto/update-attendance.dto';
 import { CreateAttendanceDto } from '../dto/create-attendance.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Attendance } from '../entities/attendance.entity';
+import { ErrorManager } from 'src/utils/error.manager';
 
 @Injectable()
 export class AttendanceService {
-  create(createAttendanceDto: CreateAttendanceDto) {
-    return 'This action adds a new attendance';
+  constructor(
+    @InjectRepository(Attendance)
+    private readonly groupRepository: Repository<Attendance>,
+  ) {}
+  public async create(
+    CreateAttendanceDto: CreateAttendanceDto,
+  ): Promise<Attendance> {
+    try {
+      return this.groupRepository.save(CreateAttendanceDto);
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
   }
 
   findAll() {

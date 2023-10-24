@@ -34,11 +34,14 @@ export class UsersService {
     }
   }
 
-  public async findUserById(id: number): Promise<UsersEntity> {
+  public async findUserById(id: string): Promise<UsersEntity> {
     try {
       const user: UsersEntity = await this.userRepository
         .createQueryBuilder('user')
         .where({ id })
+        .leftJoinAndSelect('user.group', 'group')
+        .leftJoinAndSelect('user.bussinessUnit', 'bussinessUnit')
+        .leftJoinAndSelect('user.attendance', 'attendance')
         .getOne();
       if (!user) {
         throw new ErrorManager({
@@ -53,7 +56,7 @@ export class UsersService {
   }
 
   public async updateUser(
-    id: number,
+    id: string,
     updateUserDto: UpdateUserDto,
   ): Promise<UpdateResult | undefined> {
     try {
@@ -94,7 +97,7 @@ export class UsersService {
       if (user.affected === 0) {
         throw new ErrorManager({
           type: 'BAD_REQUEST',
-          message: 'Cannot delete userå',
+          message: 'Cannot delete user',
         });
       }
       return user;

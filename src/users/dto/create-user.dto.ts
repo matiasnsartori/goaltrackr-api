@@ -5,10 +5,13 @@ import {
   IsEmail,
   IsEnum,
   IsNotEmpty,
+  IsOptional,
   IsString,
+  IsUUID,
 } from 'class-validator';
+import { Attendance } from 'src/attendance/entities/attendance.entity';
 import { BussinessUnit } from 'src/bussiness-unit/entities/bussiness-unit.entity';
-import { BUSSINESS_UNITS, ROLES } from 'src/constants';
+import { BUSSINESS_UNITS, GROUPS, ROLES } from 'src/constants';
 import { Group } from 'src/group/entities/group.entity';
 import { IUser } from 'src/interfaces';
 export class CreateUserDto implements IUser {
@@ -27,6 +30,7 @@ export class CreateUserDto implements IUser {
   @IsString()
   firstName: string;
   @IsNotEmpty()
+  @IsNotEmpty()
   @IsString()
   lastName: string;
   isActive: boolean;
@@ -35,16 +39,18 @@ export class CreateUserDto implements IUser {
   role: ROLES;
   @IsNotEmpty()
   dni: number;
-  phone?: number;
+  @IsNotEmpty()
+  phone: number;
+  @IsOptional()
   address?: string;
   @IsNotEmpty()
   birthday: Date;
   @IsString()
   clothingSize?: string;
   @IsNotEmpty()
-  @IsString()
+  @IsUUID()
   group: Group;
   @IsNotEmpty()
-  @IsEnum(BUSSINESS_UNITS)
+  @IsUUID()
   bussinessUnit: BussinessUnit;
 }

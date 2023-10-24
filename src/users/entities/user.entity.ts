@@ -24,21 +24,17 @@ export class UsersEntity extends BaseEntity implements IUser {
   dni: number;
   @Column()
   phone: number;
-  @Column()
-  address: string;
+  @Column({ nullable: true })
+  address?: string;
   @Column({ type: 'date' })
   birthday: Date;
   @Column()
   clothingSize: string;
-  @Column()
-  experience: boolean;
-  @Column()
-  position: string;
   @ManyToOne(() => Group, (group) => group.user)
   group: Group;
   @ManyToOne(() => BussinessUnit, (bussinessUnit) => bussinessUnit.user)
   bussinessUnit: BussinessUnit;
   // Esta es una relación de uno a muchos, un usuario puede tener muchas asistencias, bidireccionalmente se puede acceder a la asistencia desde el usuario y viceversa.
   @OneToMany(() => Attendance, (attendance) => attendance.user)
-  attendance: Attendance[];
+  attendance?: Attendance[];
 }
