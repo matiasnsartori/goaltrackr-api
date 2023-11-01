@@ -8,6 +8,7 @@ import { GroupModule } from './group/group.module';
 import { AttendanceModule } from './attendance/attendance.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSourceConfig } from './config/data.source';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { DataSourceConfig } from './config/data.source';
     BussinessUnitModule,
     GroupModule,
     AttendanceModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

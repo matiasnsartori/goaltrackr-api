@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UsersEntity } from '../entities/user.entity';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { ErrorManager } from 'src/utils/error.manager';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -14,6 +15,7 @@ export class UsersService {
   ) {}
   public async createUser(createUserDto: CreateUserDto): Promise<UsersEntity> {
     try {
+      createUserDto.password = await bcrypt.hash(createUserDto.password, 10);
       return await this.userRepository.save(createUserDto);
     } catch (error) {
       throw new Error(error);
@@ -82,6 +84,7 @@ export class UsersService {
     try {
       const user: UsersEntity = await this.userRepository
         .createQueryBuilder('user')
+        .addSelect('user.password')
         .where({ [key]: value })
         .getOne();
 

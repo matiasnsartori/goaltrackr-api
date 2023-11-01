@@ -4,12 +4,14 @@ import { BaseEntity } from '../../config/base.entity';
 import { IUser } from '../../interfaces/user.interface';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { Group } from '../../group/entities/group.entity';
+import { Exclude } from 'class-transformer';
 @Entity({ name: 'users' })
 export class UsersEntity extends BaseEntity implements IUser {
   @Column({ unique: true })
   email: string;
   @Column({ unique: true })
   username: string;
+  @Exclude() //this is for not showing the password in the response
   @Column()
   password: string;
   @Column()
