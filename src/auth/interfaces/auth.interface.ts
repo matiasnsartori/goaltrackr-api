@@ -6,3 +6,16 @@ export interface IJwtPayload {
   email: string;
   role: ROLES;
 }
+
+export interface IAuthTokenResult {
+  sub: string;
+  role: string;
+  iat: number;
+  exp: number;
+}
+
+export interface IUseToken {
+  role: string;
+  sub: string;
+  isExpired: boolean;
+}

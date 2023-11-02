@@ -45,7 +45,7 @@ export class AuthService {
   public async generateJwt(user: UsersEntity) {
     const getUser = await this.userService.findUserById(user.id);
     const payload: jwt.JwtPayload = {
-      id: getUser.id,
+      sub: getUser.id,
       username: getUser.username,
       email: getUser.email,
       role: getUser.role,
