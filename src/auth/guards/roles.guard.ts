@@ -47,7 +47,7 @@ export class RolesGuard implements CanActivate {
       return true;
     }
 
-    const isAuth = roles.some((role) => role === roleUser);
+    const isAuth = roles.some((role) => role === roleUser.toUpperCase());
     if (!isAuth) {
       throw new UnauthorizedException('No tienes permisos para esta acción');
     }
